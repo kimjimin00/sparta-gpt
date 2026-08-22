@@ -4,7 +4,7 @@
  * 콘텐츠는 아래 DATA만 수정하면 화면에 자동으로 반영됩니다.
  */
 
-const siteData = [ 
+const siteData = [
     {
         id: "vlog",
         title: "Vlog",
