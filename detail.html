@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MintoLog</title>
+    <link rel="icon" type="image/png" href="mysql.png">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: #FFFDF2;
+            color: #111;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar-custom {
+            height: 72px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFFDF2;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .logo {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 25px;
+            font-weight: 400;
+            letter-spacing: -1.5px;
+            color: #111;
+            text-decoration: none;
+        }
+
+        .back {
+            color: #111;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .back:hover { color: #506817; }
+
+        .detail-wrap {
+            width: min(1180px, calc(100% - 100px));
+            margin: 0 auto;
+            padding: 85px 0 130px;
+        }
+
+        .detail-category {
+            color: #8a8a78;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .detail-title {
+            margin: 15px 0 12px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(48px, 7vw, 88px);
+            line-height: .98;
+            font-weight: 400;
+            letter-spacing: -3px;
+        }
+
+        .detail-date {
+            color: #777;
+            font-size: 12px;
+            margin-bottom: 50px;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-height: 760px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .detail-text {
+            width: min(760px, 100%);
+            margin: 55px auto 0;
+            font-size: 16px;
+            line-height: 2;
+            color: #444;
+        }
+
+        .detail-footer {
+            margin-top: 100px;
+            padding-top: 35px;
+            border-top: 1px solid #d8d8d8;
+            display: flex;
+            justify-content: center;
+        }
+
+        .heart-button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+        }
+
+        .heart {
+            color: #e53935;
+            font-size: 38px;
+            line-height: 1;
+            transition: transform .2s ease;
+        }
+
+        .heart-button:hover .heart {
+            transform: scale(1.12);
+        }
+
+        .heart-button.liked .heart {
+            animation: heartPop .35s ease;
+        }
+
+        .heart-count {
+            color: #555;
+            font-size: 12px;
+            letter-spacing: .5px;
+        }
+
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.35); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-custom { padding: 0 20px; }
+            .detail-wrap {
+                width: calc(100% - 40px);
+                padding-top: 55px;
+            }
+            .detail-title {
+                font-size: 52px;
+                letter-spacing: -2px;
+            }
+            .detail-image {
+                max-height: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar-custom">
+    <a href="index.html#top" class="logo">MintoLog</a>
+    <a href="index.html#top" class="back">← Back to home</a>
+</header>
+
+<main class="detail-wrap">
+
+    <div class="detail-category" id="detailCategory"></div>
+
+    <h1 class="detail-title" id="detailTitle"></h1>
+
+    <div class="detail-date" id="detailDate"></div>
+
+    <img class="detail-image" id="detailImage" src="" alt="">
+
+    <div class="detail-text" id="detailBody"></div>
+
+    <div class="detail-footer">
+        <button class="heart-button" id="heartButton" aria-label="좋아요">
+            <span class="heart">♥</span>
+            <span class="heart-count">
+                Like <strong id="heartCount">0</strong>
+            </span>
+        </button>
+    </div>
+
+</main>
+
+<script src="app.js"></script>
+
+<script>
+/*
+ * 상세 페이지
+ * URL 예:
+ * detail.html?id=vlog-01
+ */
+
+const params = new URLSearchParams(window.location.search);
+const contentId = params.get("id");
+
+let selectedItem = null;
+
+for (const section of siteData) {
+    const found = section.items.find(item => item.id === contentId);
+
+    if (found) {
+        selectedItem = found;
+        break;
+    }
+}
+
+if (!selectedItem) {
+    document.getElementById("detailTitle").textContent = "Content not found";
+} else {
+
+    document.title = `${selectedItem.title} · MintoLog`;
+
+    document.getElementById("detailCategory").textContent =
+        selectedItem.category;
+
+    document.getElementById("detailTitle").textContent =
+        selectedItem.title;
+
+    document.getElementById("detailDate").textContent =
+        selectedItem.date;
+
+    const image = document.getElementById("detailImage");
+    image.src = selectedItem.image;
+    image.alt = selectedItem.title;
+
+    document.getElementById("detailBody").textContent =
+        selectedItem.body;
+
+    /*
+     * 콘텐츠별 좋아요 수
+     * 같은 브라우저에서는 새로고침해도 유지됩니다.
+     */
+    const storageKey = `mintolog-like-${selectedItem.id}`;
+
+    let count =
+        Number(localStorage.getItem(storageKey)) || 0;
+
+    const countElement =
+        document.getElementById("heartCount");
+
+    const button =
+        document.getElementById("heartButton");
+
+    countElement.textContent = count;
+
+    button.addEventListener("click", () => {
+
+        count += 1;
+
+        localStorage.setItem(
+            storageKey,
+            count
+        );
+
+        countElement.textContent = count;
+
+        button.classList.remove("liked");
+
+        void button.offsetWidth;
+
+        button.classList.add("liked");
+    });
+}
+</script>
+
+</body>
+</html>
