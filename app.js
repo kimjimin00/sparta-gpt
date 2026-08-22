@@ -1,7 +1,9 @@
 /*
- * MintoLog Dynamic Page
- * ----------------------
- * 콘텐츠는 아래 DATA만 수정하면 화면에 자동으로 반영됩니다.
+ * MintoLog HOME JavaScript
+ * ------------------------------------
+ * 중요:
+ * 카드 클릭 시 확대/Modal을 사용하지 않고
+ * detail.html?id=콘텐츠ID 페이지로 이동합니다.
  */
 
 const siteData = [
@@ -10,6 +12,7 @@ const siteData = [
         title: "Vlog",
         items: [
             {
+                id: "vlog-01",
                 image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85",
                 category: "VLOG · 01",
                 title: "A Day Outside",
@@ -17,6 +20,7 @@ const siteData = [
                 date: "2026.08.20"
             },
             {
+                id: "vlog-02",
                 image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85",
                 category: "VLOG · 02",
                 title: "Summer Trip",
@@ -24,6 +28,7 @@ const siteData = [
                 date: "2026.08.15"
             },
             {
+                id: "vlog-03",
                 image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85",
                 category: "VLOG · 03",
                 title: "Into Nature",
@@ -38,6 +43,7 @@ const siteData = [
         title: "Story",
         items: [
             {
+                id: "story-01",
                 image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85",
                 category: "STORY · 01",
                 title: "Slow Morning",
@@ -45,6 +51,7 @@ const siteData = [
                 date: "2026.08.05"
             },
             {
+                id: "story-02",
                 image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=900&q=85",
                 category: "STORY · 02",
                 title: "Little Moments",
@@ -52,6 +59,7 @@ const siteData = [
                 date: "2026.07.29"
             },
             {
+                id: "story-03",
                 image: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=85",
                 category: "STORY · 03",
                 title: "Somewhere New",
@@ -66,6 +74,7 @@ const siteData = [
         title: "Photos",
         items: [
             {
+                id: "photos-01",
                 image: "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=85",
                 category: "PHOTO · 01",
                 title: "Green Days",
@@ -73,6 +82,7 @@ const siteData = [
                 date: "2026.07.15"
             },
             {
+                id: "photos-02",
                 image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85",
                 category: "PHOTO · 02",
                 title: "Quiet View",
@@ -80,6 +90,7 @@ const siteData = [
                 date: "2026.07.09"
             },
             {
+                id: "photos-03",
                 image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=85",
                 category: "PHOTO · 03",
                 title: "Golden Hour",
@@ -99,20 +110,15 @@ const nav = document.getElementById("mainNav");
 const contentWrapper = document.getElementById("contentWrapper");
 const heroImage = document.getElementById("heroImage");
 
-const detailModal = document.getElementById("detailModal");
-const modalImage = document.getElementById("modalImage");
-const modalCategory = document.getElementById("modalCategory");
-const modalTitle = document.getElementById("modalTitle");
-const modalDescription = document.getElementById("modalDescription");
-const modalDate = document.getElementById("modalDate");
-const modalClose = document.getElementById("modalClose");
-
 
 /* ==========================================
-   Navigation 생성
+   상단 메뉴 생성
+   클릭하면 해당 Section으로 이동
 ========================================== */
 
 function renderNavigation() {
+
+    if (!nav) return;
 
     nav.innerHTML = siteData.map(section => `
         <a href="#${section.id}" data-target="${section.id}">
@@ -123,46 +129,55 @@ function renderNavigation() {
 
 
 /* ==========================================
-   콘텐츠 Section 생성
+   콘텐츠 생성
+   ★ 중요:
+   기존 Modal / 확대 기능을 완전히 제거하고
+   각 카드를 detail.html로 연결합니다.
 ========================================== */
 
 function renderSections() {
 
+    if (!contentWrapper) return;
+
     contentWrapper.innerHTML = siteData.map(section => {
 
-        const cards = section.items.map((item, index) => `
-            <article
-                class="content-card"
-                data-section="${section.id}"
-                data-index="${index}"
-                tabindex="0">
+        const cards = section.items.map(item => {
 
-                <div class="content-image-wrap">
-                    <img
-                        src="${item.image}"
-                        class="content-image"
-                        alt="${item.title}"
-                        loading="lazy">
-                </div>
+            return `
+                <a
+                    href="detail.html?id=${encodeURIComponent(item.id)}"
+                    class="content-card"
+                    target="_blank"
+                    rel="noopener">
 
-                <div class="content-category">
-                    ${item.category}
-                </div>
+                    <div class="content-image-wrap">
+                        <img
+                            src="${item.image}"
+                            class="content-image"
+                            alt="${item.title}"
+                            loading="lazy">
+                    </div>
 
-                <h3 class="content-title">
-                    ${item.title}
-                </h3>
+                    <div class="content-category">
+                        ${item.category}
+                    </div>
 
-                <p class="content-description">
-                    ${item.description}
-                </p>
+                    <h3 class="content-title">
+                        ${item.title}
+                    </h3>
 
-                <div class="content-date">
-                    ${item.date}
-                </div>
+                    <p class="content-description">
+                        ${item.description}
+                    </p>
 
-            </article>
-        `).join("");
+                    <div class="content-date">
+                        ${item.date}
+                    </div>
+
+                </a>
+            `;
+
+        }).join("");
 
         return `
             <section
@@ -191,120 +206,6 @@ function renderSections() {
 
 
 /* ==========================================
-   카드 클릭 이벤트
-========================================== */
-
-function bindCardEvents() {
-
-    const cards = document.querySelectorAll(".content-card");
-
-    cards.forEach(card => {
-
-        card.addEventListener("click", () => {
-
-            const sectionId = card.dataset.section;
-            const itemIndex = Number(card.dataset.index);
-
-            const section = siteData.find(
-                item => item.id === sectionId
-            );
-
-            const item = section.items[itemIndex];
-
-            openModal(item);
-        });
-
-
-        /* 키보드 접근성 */
-
-        card.addEventListener("keydown", event => {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-                event.preventDefault();
-                card.click();
-            }
-
-        });
-
-    });
-}
-
-
-/* ==========================================
-   상세보기 Modal
-========================================== */
-
-function openModal(item) {
-
-    modalImage.src = item.image;
-    modalImage.alt = item.title;
-
-    modalCategory.textContent = item.category;
-    modalTitle.textContent = item.title;
-    modalDescription.textContent = item.description;
-    modalDate.textContent = item.date;
-
-    detailModal.classList.add("show");
-
-    detailModal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.style.overflow = "hidden";
-}
-
-
-function closeModal() {
-
-    detailModal.classList.remove("show");
-
-    detailModal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.style.overflow = "";
-}
-
-
-modalClose.addEventListener(
-    "click",
-    closeModal
-);
-
-
-detailModal.addEventListener(
-    "click",
-    event => {
-
-        if (event.target === detailModal) {
-            closeModal();
-        }
-
-    }
-);
-
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape" &&
-            detailModal.classList.contains("show")
-        ) {
-            closeModal();
-        }
-
-    }
-);
-
-
-/* ==========================================
    Scroll Animation
 ========================================== */
 
@@ -312,6 +213,8 @@ function setupScrollAnimation() {
 
     const cards =
         document.querySelectorAll(".content-card");
+
+    if (!cards.length) return;
 
     const observer =
         new IntersectionObserver(
@@ -341,11 +244,6 @@ function setupScrollAnimation() {
 
     cards.forEach((card, index) => {
 
-        /*
-         * 같은 줄의 카드가
-         * 살짝 시간차를 두고 등장
-         */
-
         card.style.transitionDelay =
             `${(index % 3) * 100}ms`;
 
@@ -367,31 +265,29 @@ function setupActiveNavigation() {
     const navLinks =
         document.querySelectorAll(".nav-menu a");
 
+    if (!sections.length || !navLinks.length) {
+        return;
+    }
+
     const observer =
         new IntersectionObserver(
             entries => {
 
                 entries.forEach(entry => {
 
-                    if (entry.isIntersecting) {
+                    if (!entry.isIntersecting) return;
 
-                        navLinks.forEach(link => {
-                            link.classList.remove(
-                                "active"
-                            );
-                        });
+                    navLinks.forEach(link => {
+                        link.classList.remove("active");
+                    });
 
-                        const activeLink =
-                            document.querySelector(
-                                `.nav-menu a[data-target="${entry.target.id}"]`
-                            );
+                    const activeLink =
+                        document.querySelector(
+                            `.nav-menu a[data-target="${entry.target.id}"]`
+                        );
 
-                        if (activeLink) {
-                            activeLink.classList.add(
-                                "active"
-                            );
-                        }
-
+                    if (activeLink) {
+                        activeLink.classList.add("active");
                     }
 
                 });
@@ -414,6 +310,8 @@ function setupActiveNavigation() {
 ========================================== */
 
 function setupHeroParallax() {
+
+    if (!heroImage) return;
 
     window.addEventListener(
         "scroll",
@@ -467,8 +365,6 @@ function init() {
 
     renderSections();
 
-    bindCardEvents();
-
     setupScrollAnimation();
 
     setupActiveNavigation();
@@ -476,6 +372,5 @@ function init() {
     setupHeroParallax();
 
 }
-
 
 init();
