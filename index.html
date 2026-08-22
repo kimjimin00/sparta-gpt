@@ -23,9 +23,9 @@
 
     <style>
 
-        /* ========================================
+        /* =========================================
            기본 설정
-        ======================================== */
+        ========================================= */
 
         * {
             box-sizing: border-box;
@@ -37,36 +37,55 @@
 
         body {
             margin: 0;
+
             background-color: #FFFDF2;
+
             color: #111111;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
         }
 
 
-        /* ========================================
-           상단 메뉴
-        ======================================== */
+        /* =========================================
+           상단 Navigation
+        ========================================= */
 
         .navbar-custom {
+
             width: 100%;
+
             height: 72px;
 
             padding: 0 40px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             background-color: #FFFDF2;
+
+            position: relative;
+
+            z-index: 100;
         }
 
 
-        /* 로고 */
+        /* MintoLog */
 
         .logo {
-            font-family: Georgia, "Times New Roman", serif;
 
-            font-size: 26px;
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 25px;
+
             font-weight: 400;
 
             letter-spacing: -1.5px;
@@ -80,46 +99,60 @@
         /* 메뉴 */
 
         .nav-menu {
+
             display: flex;
+
             align-items: center;
 
             gap: 42px;
 
             margin-left: auto;
+
             margin-right: 40px;
         }
 
+
         .nav-menu a {
+
             color: #111111;
 
             text-decoration: none;
 
             font-size: 12px;
+
             font-weight: 600;
 
-            transition: opacity 0.25s ease;
+            transition:
+                opacity 0.25s ease;
         }
 
+
         .nav-menu a:hover {
+
             opacity: 0.45;
         }
 
 
-        /* Learn More 버튼 */
+        /* Learn More */
 
         .learn-button {
+
             display: inline-flex;
+
             align-items: center;
+
             justify-content: center;
 
             padding: 11px 20px;
 
             background-color: #506817;
+
             color: #ffffff;
 
             border-radius: 30px;
 
             font-size: 12px;
+
             font-weight: 600;
 
             text-decoration: none;
@@ -129,37 +162,45 @@
                 transform 0.25s ease;
         }
 
+
         .learn-button:hover {
+
             background-color: #3e5111;
+
             color: #ffffff;
 
             transform: translateY(-2px);
         }
 
 
-        /* ========================================
-           Hero 영역
-        ======================================== */
+        /* =========================================
+           Hero
+        ========================================= */
 
         .hero-section {
+
             width: 100%;
 
             text-align: center;
 
-            padding-top: 75px;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding:
+                70px 20px 0;
+
+            overflow: hidden;
         }
 
 
-        /* 메인 타이틀 */
-
         .hero-title {
+
             margin: 0;
 
-            font-family: Georgia, "Times New Roman", serif;
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
 
-            font-size: clamp(58px, 8vw, 105px);
+            font-size:
+                clamp(58px, 8vw, 105px);
 
             font-weight: 400;
 
@@ -171,56 +212,66 @@
         }
 
 
-        /* 타이틀 아래 작은 글씨 */
-
         .hero-subtitle {
+
             margin-top: 22px;
+
             margin-bottom: 0;
 
             font-size: 13px;
 
             font-weight: 400;
 
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
 
-            color: #656552;
+            color: #777766;
         }
 
 
-        /* ========================================
+        /* =========================================
            메인 이미지 영역
-        ======================================== */
+        ========================================= */
 
         .visual-section {
+
+            position: relative;
+
             width: 100%;
 
+            height: 650px;
+
+            margin-top: 55px;
+
             display: flex;
+
             justify-content: center;
-            align-items: center;
 
-            margin-top: 58px;
+            align-items: flex-start;
 
-            padding: 0 20px 100px;
+            z-index: 2;
         }
 
 
-        /* 실제 이미지
-           화면 전체의 약 2/3 크기 */
-
         .hero-image {
+
+            position: relative;
+
+            z-index: 3;
+
             display: block;
 
             width: 67%;
+
             max-width: 900px;
 
             height: auto;
 
-            border-radius: 28px;
+            border-radius: 24px;
 
             object-fit: cover;
 
             box-shadow:
-                0 12px 35px rgba(0, 0, 0, 0.08);
+                0 14px 35px rgba(0, 0, 0, 0.08);
 
             transition:
                 transform 0.4s ease,
@@ -228,131 +279,339 @@
         }
 
 
-        /* 이미지에 마우스를 올렸을 때 */
-
         .hero-image:hover {
+
             transform: translateY(-5px);
 
             box-shadow:
-                0 18px 45px rgba(0, 0, 0, 0.12);
+                0 20px 45px rgba(0, 0, 0, 0.12);
         }
 
 
-        /* ========================================
-           아래 레이어
-        ======================================== */
+        /* =========================================
+           메인 이미지 중간부터 흰색 배경
+        ========================================= */
 
-        .layer-section {
-            width: 100%;
+        .content-background {
 
-            padding: 80px 40px 120px;
+            position: relative;
 
-            background-color: #FFFDF2;
-        }
-
-
-        .layer-container {
-            max-width: 1100px;
-
-            margin: 0 auto;
-
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 20px;
-        }
-
-
-        .layer-item {
-            padding: 28px;
-
-            min-height: 150px;
+            z-index: 1;
 
             background-color: #ffffff;
 
-            border-radius: 20px;
+            margin-top: -325px;
 
-            box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.04);
+            padding-top: 395px;
 
-            transition:
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
+            padding-bottom: 150px;
         }
 
 
-        .layer-item:hover {
-            transform: translateY(-5px);
+        /* =========================================
+           콘텐츠 전체 영역
+        ========================================= */
 
-            box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.08);
+        .content-wrapper {
+
+            width: 100%;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding:
+                0 55px;
         }
 
 
-        .layer-number {
-            display: block;
+        /* =========================================
+           각 콘텐츠 Section
+        ========================================= */
 
-            margin-bottom: 18px;
+        .content-section {
 
-            font-size: 11px;
+            scroll-margin-top: 100px;
 
-            color: #8a8a78;
-
-            letter-spacing: 1px;
+            margin-bottom: 180px;
         }
 
 
-        .layer-title {
+        .content-section:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================
+           Vlog / Story / Photos 제목
+        ========================================= */
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            width: 100%;
+
+            margin-bottom: 45px;
+        }
+
+
+        .section-title {
+
+            flex-shrink: 0;
+
             margin: 0;
 
-            font-family: Georgia, "Times New Roman", serif;
+            padding-right: 22px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 38px;
+
+            font-weight: 400;
+
+            letter-spacing: 1px;
+
+            color: #111111;
+        }
+
+
+        /* 제목 오른쪽 실선 */
+
+        .section-line {
+
+            width: 100%;
+
+            height: 1px;
+
+            background-color: #d8d8d8;
+        }
+
+
+        /* =========================================
+           이미지 3개 Grid
+        ========================================= */
+
+        .content-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            column-gap: 36px;
+
+            row-gap: 70px;
+
+            width: 100%;
+        }
+
+
+        /* =========================================
+           콘텐츠 카드
+        ========================================= */
+
+        .content-card {
+
+            display: block;
+
+            color: #111111;
+
+            text-decoration: none;
+
+            min-width: 0;
+        }
+
+
+        /* =========================================
+           이미지
+           5 : 6 세로형
+        ========================================= */
+
+        .content-image-wrap {
+
+            width: 100%;
+
+            aspect-ratio: 5 / 6;
+
+            overflow: hidden;
+
+            border-radius: 0;
+
+            background-color: #eeeeee;
+        }
+
+
+        .content-image {
+
+            display: block;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 0;
+
+            transition:
+                transform 0.5s ease;
+        }
+
+
+        .content-card:hover
+        .content-image {
+
+            transform: scale(1.035);
+        }
+
+
+        /* =========================================
+           콘텐츠 정보
+        ========================================= */
+
+        .content-category {
+
+            margin-top: 18px;
+
+            margin-bottom: 6px;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.5px;
+
+            color: #8a8a78;
+        }
+
+
+        .content-title {
+
+            margin: 0;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
 
             font-size: 25px;
 
             font-weight: 400;
+
+            line-height: 1.15;
+
+            letter-spacing: 0.3px;
+
+            color: #111111;
         }
 
 
-        .layer-text {
-            margin-top: 10px;
+        .content-description {
+
+            margin-top: 9px;
+
             margin-bottom: 0;
 
-            font-size: 12px;
+            font-size: 13px;
 
-            line-height: 1.6;
+            line-height: 1.55;
 
-            color: #777766;
+            color: #555555;
         }
 
 
-        /* ========================================
+        .content-date {
+
+            margin-top: 12px;
+
+            font-size: 11px;
+
+            color: #777777;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        /* =========================================
+           모바일 / 태블릿
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .navbar-custom {
+
+                padding:
+                    0 25px;
+            }
+
+
+            .nav-menu {
+
+                gap: 22px;
+
+                margin-right: 20px;
+            }
+
+
+            .content-wrapper {
+
+                padding:
+                    0 35px;
+            }
+
+
+            .content-grid {
+
+                column-gap: 22px;
+            }
+
+
+            .content-section {
+
+                margin-bottom: 140px;
+            }
+
+        }
+
+
+        /* =========================================
            모바일
-        ======================================== */
+        ========================================= */
 
         @media (max-width: 768px) {
 
-            /* 상단 */
-
             .navbar-custom {
-                height: auto;
 
-                padding: 20px;
+                height: 65px;
+
+                padding:
+                    0 20px;
             }
 
 
             .logo {
+
                 font-size: 22px;
             }
 
 
             .nav-menu {
+
                 display: none;
             }
 
 
             .learn-button {
-                padding: 9px 15px;
+
+                padding:
+                    9px 15px;
 
                 font-size: 11px;
             }
@@ -361,101 +620,180 @@
             /* Hero */
 
             .hero-section {
+
                 padding-top: 55px;
             }
 
 
             .hero-title {
-                font-size: 58px;
+
+                font-size: 55px;
 
                 letter-spacing: -3px;
-
-                line-height: 1;
             }
 
 
             .hero-subtitle {
+
                 margin-top: 18px;
 
                 font-size: 11px;
-
-                letter-spacing: 1.2px;
             }
 
 
-            /* 이미지 */
+            /* Main Image */
 
             .visual-section {
-                margin-top: 45px;
 
-                padding-bottom: 70px;
+                height: 470px;
+
+                margin-top: 45px;
             }
 
 
             .hero-image {
+
                 width: 90%;
 
-                border-radius: 22px;
+                border-radius: 20px;
             }
 
 
-            /* 아래 레이어 */
+            /* White Background */
 
-            .layer-section {
-                padding: 50px 20px 80px;
+            .content-background {
+
+                margin-top: -235px;
+
+                padding-top: 285px;
+
+                padding-bottom: 100px;
             }
 
 
-            .layer-container {
-                grid-template-columns: 1fr 1fr;
+            /* Content */
 
-                gap: 14px;
+            .content-wrapper {
+
+                padding:
+                    0 25px;
             }
 
 
-            .layer-item {
-                padding: 20px;
+            .content-section {
 
-                min-height: 130px;
+                margin-bottom: 110px;
 
-                border-radius: 16px;
+                scroll-margin-top: 80px;
             }
 
 
-            .layer-title {
+            .section-heading {
+
+                margin-bottom: 30px;
+            }
+
+
+            .section-title {
+
+                font-size: 31px;
+
+                padding-right: 16px;
+            }
+
+
+            .content-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                column-gap: 18px;
+
+                row-gap: 55px;
+            }
+
+
+            .content-title {
+
                 font-size: 21px;
+            }
+
+
+            .content-description {
+
+                font-size: 12px;
             }
 
         }
 
 
-        /* ========================================
+        /* =========================================
            작은 모바일
-        ======================================== */
+        ========================================= */
 
         @media (max-width: 480px) {
 
             .hero-title {
-                font-size: 45px;
+
+                font-size: 44px;
 
                 letter-spacing: -2px;
             }
 
 
             .hero-subtitle {
+
                 font-size: 10px;
             }
 
 
             .hero-image {
+
                 width: 94%;
 
                 border-radius: 18px;
             }
 
 
-            .layer-container {
-                grid-template-columns: 1fr;
+            .visual-section {
+
+                height: 400px;
+            }
+
+
+            .content-background {
+
+                margin-top: -200px;
+
+                padding-top: 245px;
+            }
+
+
+            .content-wrapper {
+
+                padding:
+                    0 20px;
+            }
+
+
+            .section-title {
+
+                font-size: 28px;
+            }
+
+
+            .content-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                row-gap: 65px;
+            }
+
+
+            .content-image-wrap {
+
+                aspect-ratio: 5 / 6;
             }
 
         }
@@ -468,20 +806,16 @@
 <body style="--scrollbar-width: 15px; --hundred-vh: 732px;">
 
 
-    <!-- ========================================
-         상단 Navigation
-    ========================================= -->
+    <!-- =========================================
+         Navigation
+    ========================================== -->
 
     <header class="navbar-custom">
-
-        <!-- 로고 -->
 
         <a href="#" class="logo">
             MintoLog
         </a>
 
-
-        <!-- 메뉴 -->
 
         <nav class="nav-menu">
 
@@ -497,14 +831,8 @@
                 Photos
             </a>
 
-            <a href="#contact">
-                Contact
-            </a>
-
         </nav>
 
-
-        <!-- Learn More -->
 
         <a href="#vlog" class="learn-button">
             Learn More →
@@ -514,13 +842,18 @@
 
 
 
-    <!-- ========================================
-         Hero
-    ========================================= -->
+    <!-- =========================================
+         Main
+    ========================================== -->
 
     <main>
 
-        <section class="hero-section" id="vlog">
+
+        <!-- =====================================
+             Hero
+        ====================================== -->
+
+        <section class="hero-section">
 
             <h1 class="hero-title">
                 Browse everything.
@@ -535,9 +868,9 @@
 
 
 
-        <!-- ========================================
-             중앙 이미지
-        ========================================= -->
+        <!-- =====================================
+             Main Image
+        ====================================== -->
 
         <section class="visual-section">
 
@@ -550,94 +883,421 @@
 
 
 
-        <!-- ========================================
-             메뉴 아래 레이어
-        ========================================= -->
+        <!-- =====================================
+             White Content Background
+        ====================================== -->
 
-        <section class="layer-section" id="story">
-
-            <div class="layer-container">
+        <div class="content-background">
 
 
-                <!-- Vlog -->
-
-                <div class="layer-item">
-
-                    <span class="layer-number">
-                        01 · VLOG
-                    </span>
-
-                    <h2 class="layer-title">
-                        Vlog
-                    </h2>
-
-                    <p class="layer-text">
-                        일상과 순간을 기록합니다.
-                    </p>
-
-                </div>
+            <div class="content-wrapper">
 
 
-                <!-- Story -->
+                <!-- =================================
+                     VLOG
+                ================================== -->
 
-                <div class="layer-item">
+                <section
+                    class="content-section"
+                    id="vlog">
 
-                    <span class="layer-number">
-                        02 · STORY
-                    </span>
+                    <div class="section-heading">
 
-                    <h2 class="layer-title">
-                        Story
-                    </h2>
+                        <h2 class="section-title">
+                            Vlog
+                        </h2>
 
-                    <p class="layer-text">
-                        기억하고 싶은 이야기를 담습니다.
-                    </p>
+                        <div class="section-line"></div>
 
-                </div>
-
-
-                <!-- Photos -->
-
-                <div class="layer-item" id="photos">
-
-                    <span class="layer-number">
-                        03 · PHOTOS
-                    </span>
-
-                    <h2 class="layer-title">
-                        Photos
-                    </h2>
-
-                    <p class="layer-text">
-                        사진으로 남겨둔 순간들입니다.
-                    </p>
-
-                </div>
+                    </div>
 
 
-                <!-- Contact -->
+                    <div class="content-grid">
 
-                <div class="layer-item" id="contact">
 
-                    <span class="layer-number">
-                        04 · CONTACT
-                    </span>
+                        <!-- Vlog 01 -->
 
-                    <h2 class="layer-title">
-                        Contact
-                    </h2>
+                        <a
+                            href="#"
+                            class="content-card">
 
-                    <p class="layer-text">
-                        MintoLog와 이야기를 나눠보세요.
-                    </p>
+                            <div class="content-image-wrap">
 
-                </div>
+                                <img
+                                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="Vlog 여행">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                VLOG · 01
+                            </div>
+
+                            <h3 class="content-title">
+                                A Day Outside
+                            </h3>
+
+                            <p class="content-description">
+                                햇살 좋은 날의 작은 여행과 일상.
+                            </p>
+
+                            <div class="content-date">
+                                2026.08.20
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- Vlog 02 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="바다 여행">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                VLOG · 02
+                            </div>
+
+                            <h3 class="content-title">
+                                Summer Trip
+                            </h3>
+
+                            <p class="content-description">
+                                바다와 함께 보낸 여름날의 기록.
+                            </p>
+
+                            <div class="content-date">
+                                2026.08.15
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- Vlog 03 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="자연">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                VLOG · 03
+                            </div>
+
+                            <h3 class="content-title">
+                                Into Nature
+                            </h3>
+
+                            <p class="content-description">
+                                잠시 쉬어가는 자연 속 하루.
+                            </p>
+
+                            <div class="content-date">
+                                2026.08.08
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================
+                     STORY
+                ================================== -->
+
+                <section
+                    class="content-section"
+                    id="story">
+
+                    <div class="section-heading">
+
+                        <h2 class="section-title">
+                            Story
+                        </h2>
+
+                        <div class="section-line"></div>
+
+                    </div>
+
+
+                    <div class="content-grid">
+
+
+                        <!-- Story 01 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="카페">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                STORY · 01
+                            </div>
+
+                            <h3 class="content-title">
+                                Slow Morning
+                            </h3>
+
+                            <p class="content-description">
+                                커피 한 잔으로 시작하는 느긋한 아침.
+                            </p>
+
+                            <div class="content-date">
+                                2026.08.05
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- Story 02 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="일상">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                STORY · 02
+                            </div>
+
+                            <h3 class="content-title">
+                                Little Moments
+                            </h3>
+
+                            <p class="content-description">
+                                평범해서 더 소중했던 하루의 순간들.
+                            </p>
+
+                            <div class="content-date">
+                                2026.07.29
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- Story 03 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="여행">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                STORY · 03
+                            </div>
+
+                            <h3 class="content-title">
+                                Somewhere New
+                            </h3>
+
+                            <p class="content-description">
+                                처음 만난 장소에서 발견한 새로운 이야기.
+                            </p>
+
+                            <div class="content-date">
+                                2026.07.21
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================
+                     PHOTOS
+                ================================== -->
+
+                <section
+                    class="content-section"
+                    id="photos">
+
+                    <div class="section-heading">
+
+                        <h2 class="section-title">
+                            Photos
+                        </h2>
+
+                        <div class="section-line"></div>
+
+                    </div>
+
+
+                    <div class="content-grid">
+
+
+                        <!-- Photo 01 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="식물 사진">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                PHOTO · 01
+                            </div>
+
+                            <h3 class="content-title">
+                                Green Days
+                            </h3>
+
+                            <p class="content-description">
+                                초록이 가장 아름답게 보였던 어느 날.
+                            </p>
+
+                            <div class="content-date">
+                                2026.07.15
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- Photo 02 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="풍경 사진">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                PHOTO · 02
+                            </div>
+
+                            <h3 class="content-title">
+                                Quiet View
+                            </h3>
+
+                            <p class="content-description">
+                                조용히 바라보고 싶은 풍경.
+                            </p>
+
+                            <div class="content-date">
+                                2026.07.09
+                            </div>
+
+                        </a>
+
+
+
+                        <!-- Photo 03 -->
+
+                        <a
+                            href="#"
+                            class="content-card">
+
+                            <div class="content-image-wrap">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=85"
+                                    class="content-image"
+                                    alt="노을 사진">
+
+                            </div>
+
+
+                            <div class="content-category">
+                                PHOTO · 03
+                            </div>
+
+                            <h3 class="content-title">
+                                Golden Hour
+                            </h3>
+
+                            <p class="content-description">
+                                하루가 천천히 저물어가는 시간.
+                            </p>
+
+                            <div class="content-date">
+                                2026.07.02
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </section>
 
 
             </div>
 
-        </section>
+        </div>
+
 
     </main>
 
